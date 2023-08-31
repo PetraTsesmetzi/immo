@@ -10,6 +10,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
+    private ? string $plainPassword;
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -125,5 +129,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->lastname = $lastname;
 
         return $this;
+    }
+
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
     }
 }
